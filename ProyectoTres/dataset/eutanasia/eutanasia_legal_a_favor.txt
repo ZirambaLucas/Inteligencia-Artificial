@@ -1,0 +1,5 @@
+Titulo: Regulación en países pioneros
+Perspectiva: Legal
+Resumen: Países como Bélgica y Colombia han legalizado la eutanasia con estrictos protocolos, reduciendo muertes clandestinas.
+Desarrollo: Bélgica (2002) permite eutanasia para adultos con sufrimiento físico o psíquico irreversible, tras evaluación de tres médicos. Colombia (2015) fue pionera en Latinoamérica, pero solo el 10% de hospitales cumplen los requisitos (MinSalud, 2023). En EE.UU., Oregon (Death with Dignity Act) exige prognosis de menos de 6 meses. Datos muestran que el 0.3% de muertes en Países Bajos son por eutanasia, sin abusos documentados (GOVNL, 2022).
+Conclusión: La regulación legal protege derechos y evita abusos, pero exige sistemas de salud robustos.

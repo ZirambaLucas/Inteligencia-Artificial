@@ -1,0 +1,5 @@
+Titulo: Roe vs. Wade y su impacto histórico
+Perspectiva: Legal (EE.UU.)
+Resumen: Roe vs. Wade (1973) legalizó el aborto en EE.UU. bajo el derecho a la privacidad, pero su revocación en 2022 generó regresión en varios estados.
+Desarrollo: La sentencia Roe basó su fallo en la 14ª Enmienda, dividiendo el embarazo en trimestres: sin restricciones hasta la viabilidad (primeros dos), permitiendo regulaciones después. Sin embargo, Dobbs vs. Jackson (2022) revocó Roe, devolviendo la decisión a los estados. Esto ha creado desigualdades: Texas prohibió casi todos los abortos, mientras California los garantizó hasta la semana 24. Datos muestran que los abortos aumentaron en estados con leyes protectoras (Guttmacher, 2023).
+Conclusión: Roe vs. Wade marcó un avance en derechos reproductivos, pero su caída evidenció la fragilidad de estos en sistemas legales descentralizados.
