@@ -1,6 +1,7 @@
 import pygame
 import random
 import csv
+import os
 
 # Librerias necesarias para el árbol de decisión
 import numpy as np 
@@ -83,11 +84,11 @@ frame_speed = 10  # Cuántos frames antes de cambiar a la siguiente imagen
 frame_count = 0
 
 # Variables para la bala
-velocidad_bala = -10  # Velocidad de la bala hacia la izquierda
+velocidad_bala = -6  # Velocidad de la bala hacia la izquierda
 bala_disparada = False
 
 # Variables para la bala2
-velocidad_bala2 = -10  # Velocidad de la bala hacia abajo
+velocidad_bala2 = -6  # Velocidad de la bala hacia abajo
 bala_disparada2 = False
 
 # Variables para el fondo en movimiento
@@ -103,14 +104,14 @@ modelo_nn_izquierdo = None  # Modelo para movimiento izquierdo
 def disparar_bala():
     global bala_disparada, velocidad_bala
     if not bala_disparada:
-        velocidad_bala = random.randint(-8, -3)  # Velocidad aleatoria negativa para la bala
+        velocidad_bala = random.randint(-5, -4)  # Velocidad aleatoria negativa para la bala
         bala_disparada = True
         
 # Función para disparar la bala2
 def disparar_bala2():
     global bala_disparada2, velocidad_bala2
     if not bala_disparada2:
-        velocidad_bala2 = 5  # Velocidad aleatoria negativa para la bala
+        velocidad_bala2 = 4  # Velocidad aleatoria negativa para la bala
         bala_disparada2 = True
 
 # Función para reiniciar la posición de la bala
@@ -152,8 +153,8 @@ def manejar_movimiento_delantero():
         jugador.x += delantero_direccion
 
         # Límite hacia adelante
-        if jugador.x >= w - 670:
-            jugador.x = w - 670
+        if jugador.x >= w - 650:
+            jugador.x = w - 650
             regresando = True  # Comenzar regreso
 
     elif regresando:
@@ -161,36 +162,31 @@ def manejar_movimiento_delantero():
         jugador.x -= delantero_direccion
 
         # Si llega a la posición inicial, detener
-        if jugador.x <= 50:
-            jugador.x = 50
+        if jugador.x <= 80:
+            jugador.x = 80
             regresando = False
             delantero = False
             en_posicion_inicial = True
 
 def manejar_movimiento_izquierdo():
-    global jugador, izquierdo, regresando_izquierdo, izquierdo_direccion, en_posicion_inicial_izquierdo, salto
+    global jugador, izquierdo, regresando_izquierdo, izquierdo_direccion, en_posicion_inicial_izquierdo
 
-    if izquierdo:
-        # Si estamos saltando, permitir movimiento completo
-        if salto and not regresando:
-            jugador.x -= abs(izquierdo_direccion)
-            # Limitar movimiento izquierdo durante salto
-            if jugador.x <= 10:
-                jugador.x = 10
-        # Si no estamos saltando, aplicar la lógica normal
-        elif not regresando_izquierdo:
-            jugador.x -= abs(izquierdo_direccion)
-            if jugador.x <= 10:
-                jugador.x = 10
-                regresando_izquierdo = True
-        # Lógica de regreso
-        elif regresando_izquierdo:
-            jugador.x += abs(izquierdo_direccion)
-            if jugador.x >= 80:  # Cambiado a 80 para coincidir con posición inicial
-                jugador.x = 80
-                regresando_izquierdo = False
-                izquierdo = False
-                en_posicion_inicial_izquierdo = True
+    if izquierdo and not regresando_izquierdo:
+        jugador.x -= abs(izquierdo_direccion)
+
+        if jugador.x <= 10:
+            jugador.x = 10
+            regresando_izquierdo = True
+
+    elif regresando_izquierdo:
+        jugador.x += abs(izquierdo_direccion)
+
+        if jugador.x >= 80:
+            jugador.x = 80
+            regresando_izquierdo = False
+            izquierdo = False
+            en_posicion_inicial_izquierdo = True
+
         
 # Función para actualizar el juego
 def update():
@@ -299,6 +295,8 @@ def mostrar_menu():
                     menu_activo = False
                 elif evento.key == pygame.K_m:
                     modo_auto = False
+                    datos_modelo.clear()
+                    print("Modo Manual activado - datos anteriores eliminados.")
                     menu_activo = False
                 elif evento.key == pygame.K_q:
                     print("Juego terminado. Datos recopilados:", datos_modelo)
@@ -370,6 +368,9 @@ def guardar_dataset():
             # Escribir todos los datos
             for dato in datos_modelo:
                 writer.writerow(dato)
+
+            archivo.flush()  # Vacía el buffer interno
+            os.fsync(archivo.fileno())  # Forza la escritura física en disco
                 
         print(f"Datos guardados exitosamente en {nombre_archivo}")
         
